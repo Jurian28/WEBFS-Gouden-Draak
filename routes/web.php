@@ -14,6 +14,8 @@ Route::get('/menukaart', function () {
 Route::get('/news', function () {
     return view('/klant/news');
 });
+
+
 Route::get('/rotzooi', function () {
     return view('/klant/rotzooi');
 });

@@ -15,7 +15,13 @@
         }
 
         a {text-decoration: none;
-            color: yellow;}
+            color: yellow;
+        }
+
+        @keyframes scroll-left {
+            from { transform: translateX(100%); }
+            to { transform: translateX(-100%); }
+        }
     </style>
 </head>
 
@@ -27,10 +33,12 @@
         <span style="font-family:'chinese_takeawayregular'; color: yellow; text-align: center; font-size: 30px">De Gouden Draak</span>
         <img style="vertical-align: middle;" src="{{ asset('images/logos/dragon-small-flipped.png') }}" alt="Golden Dragon" height="50px">
     </div>
-    <a href="paginas/aanbiedingen.html" style="color:yellow;font-weight:bold;text-decoration: none;">
-        <marquee behavior="scroll" direction="left">
-            Welkom bij De Gouden Draak. Klik op deze tekst om de aanbiedingen van deze week te zien!
-        </marquee>
+    <a href="paginas/aanbiedingen.html" style="color:yellow;font-weight:bold;text-decoration: none; ">
+        <div style="overflow: hidden; white-space: nowrap;">
+            <div style=" display: inline-block; animation: scroll-left 18s linear infinite; font-weight: bold; margin-top: 15px">
+                Welkom bij De Gouden Draak. Klik op deze tekst om de aanbiedingen van deze week te zien!
+            </div>
+        </div>
     </a>
     <div>
         <img style="vertical-align: middle;" src="{{ asset('images/logos/dragon-small.png') }}" alt="Golden Dragon" height="50px">
@@ -87,7 +95,7 @@
             <!-- CONTENT HERE! -->
 
             <x-klant.navbar></x-klant.navbar>
-            <div style='border:1px solid black; background:floralwhite; margin-left: 54px; margin-right: 54px; margin-bottom: 25px'> <br>
+            <div style='margin-left: 54px; margin-right: 54px; margin-bottom: 25px;'>
                 {{ $slot }}
             </div>
 

@@ -5,14 +5,14 @@
         <h1 style="margin: 0; font-size:50px;font-weight:bold;color:yellow">De Gouden Draak</h1>
 
         <nav style="display: flex; justify-content: center; gap: 4px; background-color: red; padding: 5px; padding-top: 16px;">
-            <a href="MENUKAART.html"
+            <a href="/menukaart"
                style="color: white; text-align: center; padding: 10px 30px; background: linear-gradient(to bottom, #00ffff, #0000ff); border: 1px solid white; text-decoration: none;">
                 Menukaart
             </a>
-            <a href="news.html"
+            <a href="/news"
                style="color: white; text-align: center; padding: 10px 30px; background: linear-gradient(to bottom, #00ffff, #0000ff); border: 1px solid white; text-decoration: none;"> Nieuws
             </a>
-            <a href="contact.html"
+            <a href="/contact"
                style="color: white; text-align: center; padding: 10px 30px; background: linear-gradient(to bottom, #00ffff, #0000ff); border: 1px solid white; text-decoration: none;"> Contact
             </a>
         </nav>
