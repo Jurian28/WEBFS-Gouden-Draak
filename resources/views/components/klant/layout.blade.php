@@ -99,7 +99,7 @@
                 {{ $slot }}
             </div>
 
-            <div style='text-align: center'><a href="paginas/contact_new.html">Naar Contact</a></div>
+            <div style='text-align: center'><a href="/contact">Naar Contact</a></div>
 
         </td>
         <td style="width:25px;"></td>
