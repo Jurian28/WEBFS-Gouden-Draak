@@ -78,6 +78,8 @@
     </div>
 </template>
 <script>
+import { route } from 'ziggy-js'
+
 export default {
     props: {
         dishesByType: Object,
@@ -108,14 +110,29 @@ export default {
             return this.dishesList.find(d => d.id == dishId);
         },
 
-        sell() {
-            alert("Verkoop succesvol")
-            this.emptyCart()
-        },
-
         emptyCart() {
             this.cart = {};
-        }
+        },
+
+        sell() {
+            fetch(route('cart.sell'), {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document
+                        .querySelector('meta[name="csrf-token"]').content
+                },
+                body: JSON.stringify({ cart: this.cart })
+            }).then(res => res.json())
+                .then(result => {
+                    if (result.success) {
+                        alert('Verkoop succesvol!');
+                        this.emptyCart();
+                    } else {
+                        alert('ERROR: Verkoop niet succesvol.');
+                    }
+                });
+        },
     },
 
     computed: {

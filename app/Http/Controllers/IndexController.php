@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dish;
+use App\Models\Sale;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,6 +22,33 @@ class IndexController extends Controller
     }
 
     public function sales() {
-        dd("sales");
+
+        $revenue = 0;
+        $exclVat = (($revenue/106)*100);
+        $vat = $revenue - $exclVat;
+        return view('kassa.sales', compact('revenue', 'exclVat', 'vat'));
+    }
+
+    public function salesOverview(Request $request) {
+        $validated = $request->validate([
+            'start' => 'required|date',
+            'end' => 'required|date|after:start',
+        ]);
+
+        $sales = Sale::whereBetween('created_at', [
+            $validated['start'],
+            $validated['end']
+        ])->with('dish')->get();
+
+
+        $revenue = 0;
+        $sales->each(function ($sale) use (&$revenue) {
+            $revenue += $sale->dish->price * $sale->amount;
+        });
+
+        $exclVat = (($revenue/106)*100);
+        $vat = $revenue - $exclVat;
+
+        return view('kassa.sales', compact('sales', 'revenue', 'exclVat', 'vat'));
     }
 }

@@ -10,6 +10,7 @@ class Sale extends Model
         'dish_id',
         'order_id',
         'rice_type_id',
+        'price',
         'amount',
         'sale_date',
     ];

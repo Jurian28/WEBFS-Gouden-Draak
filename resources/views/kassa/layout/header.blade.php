@@ -1,6 +1,3 @@
-@vite(['resources/css/app.css'])
-@vite(['resources/js/app.js'])
-
 <div class="flex items-center justify-between border-b p-3">
 
     <img
