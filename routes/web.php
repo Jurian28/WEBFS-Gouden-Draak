@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\IndexController;
+use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,12 +19,13 @@ Route::get('/news', function () {
 });
 
 
-Route::get('/login', function () {
-    return view('/kassa/login');
+
+Route::get('/kassa', [IndexController::class, 'index'])->middleware(Authenticate::class)->name('kassa');
+
+Route::controller(AuthController::class)->group(function () {
+    Route::get('/login', 'login')->name('login');
+    Route::post('/authenticate', 'authenticate')->name("authenticate");
+
+    Route::post('/logout', 'logout')->name('logout');
 });
 
-Route::get('/kassa', function () {
-    return view('/kassa/index');
-})->middleware(\App\Http\Middleware\Authenticate::class);
-
-Route::post('/Authenticate', [AuthController::class, 'authenticate']);

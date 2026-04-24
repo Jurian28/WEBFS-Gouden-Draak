@@ -35,7 +35,7 @@
     </div>
     <a href="paginas/aanbiedingen.html" style="color:yellow;font-weight:bold;text-decoration: none; ">
         <div style="overflow: hidden; white-space: nowrap;">
-            <div style=" display: inline-block; animation: scroll-left 18s linear infinite; font-weight: bold; margin-top: 15px">
+            <div style=" display: inline-block; animation: scroll-left 18s linear infinite; font-weight: bold; margin-top: 15px; width: 420px">
                 Welkom bij De Gouden Draak. Klik op deze tekst om de aanbiedingen van deze week te zien!
             </div>
         </div>

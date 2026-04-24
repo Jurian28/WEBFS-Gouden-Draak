@@ -7,6 +7,14 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    function login() {
+        if (Auth::check()) {
+            return redirect('kassa');
+        }
+        return view('kassa.login');
+    }
+
+
     function authenticate(Request $request): RedirectResponse
     {
         $credentials = $request->validate([
@@ -21,5 +29,11 @@ class AuthController extends Controller
         return back()->withErrors([
             "login" => "failed bruv"
         ]);
+    }
+
+    function logout(): RedirectResponse
+    {
+        Auth::logout();
+        return redirect("/login");
     }
 }

@@ -1,14 +1,8 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>lksdflkjsdlf</h1>
-    <p>jsdflkjsdlfks</p>
-</body>
-</html>
+@extends('kassa.layout.layout')
+@section('title', 'Goodpay kassa')
+
+@section('content')
+    <div id="cashDeskPage">
+        <kassa-component :dishes-list='@json($dishesList)' :dishes-by-type='@json($dishesByType)'></kassa-component>
+    </div>
+@endsection
