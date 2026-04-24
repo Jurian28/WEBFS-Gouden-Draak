@@ -14,4 +14,13 @@ class IndexController extends Controller
         $dishesList = Dish::all();
         return view('kassa.index', compact('dishesByType', 'dishesList'));
     }
+
+    public function dishes() {
+        $dishesByType = Dish::all()->groupBy('type_dish');
+        return view('kassa.dishes', compact('dishesByType'));
+    }
+
+    public function sales() {
+        dd("sales");
+    }
 }

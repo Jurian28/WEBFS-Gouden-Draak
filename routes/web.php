@@ -20,7 +20,11 @@ Route::get('/news', function () {
 
 
 
-Route::get('/kassa', [IndexController::class, 'index'])->middleware(Authenticate::class)->name('kassa');
+Route::controller(IndexController::class)->middleware('auth')->group(function () {
+    Route::get('/kassa', 'index')->name('kassa');
+    Route::get('/dishes', 'dishes')->name('dishes');
+    Route::get('/sales', 'sales')->name('sales');
+});
 
 Route::controller(AuthController::class)->group(function () {
     Route::get('/login', 'login')->name('login');

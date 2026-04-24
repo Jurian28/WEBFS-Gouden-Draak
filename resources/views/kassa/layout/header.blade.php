@@ -12,22 +12,26 @@
     @if(auth()->check())
         <div class="flex gap-2">
 
-            <button class="border px-3 py-1 rounded">
+            <a href="{{ route('kassa') }}" class="border px-3 py-1 rounded inline-block hover:bg-gray-200">
                 Kassa
-            </button>
-
-            <button class="border px-3 py-1 rounded">
-                Gerechten
-            </button>
-
-            <button class="border px-3 py-1 rounded">
-                Verkoop Overzicht
-            </button>
-
-
-            <a class="border px-3 py-1 rounded">
-                Log Uit
             </a>
+
+            <a href="{{ route('dishes') }}" class="border px-3 py-1 rounded inline-block hover:bg-gray-200">
+                Gerechten
+            </a>
+
+            <a href="{{ route('sales') }}" class="border px-3 py-1 rounded inline-block hover:bg-gray-200">
+                Verkoop Overzicht
+            </a>
+
+
+            <form action="{{ route('logout') }}" method="POST" class="inline hover:bg-gray-200">
+                @csrf
+
+                <button type="submit" class="border px-3 py-1 rounded">
+                    Log Uit
+                </button>
+            </form>
 
         </div>
     @endif
