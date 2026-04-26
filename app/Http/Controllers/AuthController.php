@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use function Laravel\Prompts\error;
 
 class AuthController extends Controller
 {
@@ -22,16 +23,22 @@ class AuthController extends Controller
             'password' => 'required|string'
         ]);
 
-        if (Auth::attempt($credentials)) {
-            return redirect("/kassa");
+        if (!Auth::attempt($credentials)) {
+            return back()->withErrors([
+                "login" => "invalid credentials"
+            ]);
         }
 
-        return back()->withErrors([
-            "login" => "failed bruv"
-        ]);
+        if (Auth::user()->role('admin')) {
+            return redirect("/kassa");
+        } else if (Auth::user()->role('customer')) {
+            return redirect("customer/chooseTable");
+        }
+
+        return abort(404, 'User type not allowed');
     }
 
-    function logout(): RedirectResponse
+    public function logout(): RedirectResponse
     {
         Auth::logout();
         return redirect("/login");

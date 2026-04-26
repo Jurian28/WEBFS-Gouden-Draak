@@ -2,7 +2,7 @@
 @section('title', 'Goodpay kassa')
 
 @section('content')
-    <div id="cashDeskPage">
+    <div id="app">
         <kassa-component :dishes-list='@json($dishesList)' :dishes-by-type='@json($dishesByType)'></kassa-component>
     </div>
 @endsection

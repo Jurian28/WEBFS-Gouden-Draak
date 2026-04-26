@@ -147,7 +147,10 @@ class DishSeeder extends Seeder
         ];
 
         foreach ($data as $dish) {
-            DB::table('dish')->insert($dish);
+            DB::table('dishes')->insert($dish);
+            DB::table('dishes')->insert($dish);
+            DB::table('dishes')->insert($dish);
+            DB::table('dishes')->insert($dish);
         }
     }
 }

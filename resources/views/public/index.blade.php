@@ -1,4 +1,6 @@
-<x-klant.layout>
+@extends('public.layout.layout')
+
+@section('content')
     <div style="border:1px solid black; background:floralwhite; margin-bottom: 2px; padding-top: 18px; padding-bottom: 18px">
         <h3 style="margin-bottom: 40px">Al jaren is De Gouden Draak een begrip als het gaat om de beste afhaalgerechten in 's-Hertogenbosch.<br>
             Graag trakteren we u op authentieke gerechten uit de Cantonese keuken.</h3>
@@ -37,4 +39,4 @@
         <h3 style="margin-top: 40px">Met witte rijst. (Nasi of bami voor meerprijs mogelijk.)</h3>
         <h1>Prijs: €21,00</h1>
     </div>
-</x-klant.layout>
+@endsection

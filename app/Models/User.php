@@ -23,4 +23,8 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function role($role) {
+        return $this->user_type === $role;
+    }
+
 }

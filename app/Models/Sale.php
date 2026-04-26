@@ -8,7 +8,7 @@ class Sale extends Model
 {
     protected $fillable = [
         'dish_id',
-        'order_id',
+        'group_id',
         'rice_type_id',
         'price',
         'amount',
@@ -20,9 +20,8 @@ class Sale extends Model
         return $this->belongsTo(Dish::class);
     }
 
-    public function order()
-    {
-        return $this->belongsTo(Order::class);
+    public function group() {
+        return $this->belongsTo(Group::class);
     }
 
     public function riceType()

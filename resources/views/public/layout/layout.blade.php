@@ -94,9 +94,9 @@
         <td style="text-align:center">
             <!-- CONTENT HERE! -->
 
-            <x-klant.navbar></x-klant.navbar>
+            @include('public.layout.navbar')
             <div style='margin-left: 54px; margin-right: 54px; margin-bottom: 25px;'>
-                {{ $slot }}
+                @yield('content')
             </div>
 
             <div style='text-align: center'><a href="/contact">Naar Contact</a></div>

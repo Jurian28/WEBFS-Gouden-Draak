@@ -8,12 +8,11 @@ class Guest extends Model
 {
     protected $fillable = [
         'age',
-        'table_id',
+        'group_id',
     ];
 
-
-    public function table()
+    public function group()
     {
-        return $this->belongsTo(Table::class);
+        return $this->belongsTo(Group::class);
     }
 }

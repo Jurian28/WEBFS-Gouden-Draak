@@ -6,7 +6,7 @@
         class="h-10"
     >
 
-    @if(auth()->check())
+    @if(auth()->check() && auth()->user()->role('admin'))
         <div class="flex gap-2">
 
             <a href="{{ route('kassa') }}" class="border px-3 py-1 rounded inline-block hover:bg-gray-200">
@@ -21,6 +21,9 @@
                 Verkoop Overzicht
             </a>
 
+            <a href="{{ route('kassa.tables') }}" class="border px-3 py-1 rounded inline-block hover:bg-gray-200">
+                Tafels
+            </a>
 
             <form action="{{ route('logout') }}" method="POST" class="inline hover:bg-gray-200">
                 @csrf

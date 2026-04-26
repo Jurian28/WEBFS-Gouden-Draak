@@ -10,7 +10,7 @@
 </head>
 
 <body>
-@include('kassa.layout.header')
+@include('kassa.layout.navbar')
 @yield('content')
 </body>
 </html>
