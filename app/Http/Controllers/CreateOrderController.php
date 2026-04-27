@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Dish;
 use App\Models\Group;
+use App\Models\Order;
 use App\Models\Sale;
 use App\Models\Table;
 use Illuminate\Http\Request;
@@ -17,10 +18,8 @@ class CreateOrderController extends Controller
         ]);
 
         $cart = $validated['cart'];
-        $table = Table::where('number', $validated['table_number'])->first();
-        $group = Group::where('table_id', $table->id)
-            ->where('active', true)
-            ->first();
+        $group = Table::where('number', $validated['table_number'])->first()
+            ->getActiveGroup();
 
         if (!$group) {
             return response()->json([
@@ -29,6 +28,11 @@ class CreateOrderController extends Controller
             ]);
         }
 
+        $order = new Order([
+            'group_id' => $group->id,
+        ]);
+        $order->save();
+
         foreach ($cart as $id => $amount) {
             $dishPrice = Dish::find($id)->price;
 
@@ -36,7 +40,7 @@ class CreateOrderController extends Controller
                 'dish_id' => $id,
                 'amount' => $amount,
                 'price' => $dishPrice,
-                'group_id' => $group->id
+                'order_id' => $order->id
             ]);
 
             $sale->save();

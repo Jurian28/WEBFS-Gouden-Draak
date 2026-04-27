@@ -58,7 +58,8 @@
                             <input
                                 type="number"
                                 min="0"
-                                v-model.number="cart[dish.id]"
+                                :value="cart[dish.id]"
+                                @input="setAmount(dish.id, $event.target.value)"
                                 class="w-12 border"
                             />
                         </td>
@@ -82,15 +83,20 @@ import { route } from 'ziggy-js'
 
 export default {
     props: {
+        startingCart: {
+            type: [Object, null],
+            default: null
+        },
         dishesByType: Object,
         dishesList: Array
     },
     data() {
-        return { cart: {} };
+        return { cart: this.startingCart ?? {} };
     },
 
     methods: {
         formatPrice(price) {
+            console.log(this.cart)
             return Number(price).toFixed(2).replace('.', ',')
         },
 
@@ -113,6 +119,16 @@ export default {
         emptyCart() {
             this.cart = {};
         },
+
+        setAmount(dishId, value) {
+            value = Number(value);
+
+            if (value <= 0) {
+                delete this.cart[dishId];
+            } else {
+                this.cart[dishId] = value;
+            }
+        }
     },
 
     computed: {

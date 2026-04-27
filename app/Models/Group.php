@@ -20,7 +20,7 @@ class Group extends Model
         return $this->hasMany(Guest::class);
     }
 
-    public function sales() {
-        return $this->hasMany(Sale::class);
+    public function orders() {
+        return $this->hasMany(Order::class);
     }
 }

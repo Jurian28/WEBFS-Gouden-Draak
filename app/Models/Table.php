@@ -14,4 +14,13 @@ class Table extends Model
     {
         return $this->hasMany(Table_roster::class);
     }
+
+    public function groups()
+    {
+        return $this->hasMany(Group::class);
+    }
+
+    public function getActiveGroup(){
+        return $this->groups()->where('active', 1)->first();
+    }
 }

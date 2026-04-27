@@ -44,7 +44,8 @@ Route::middleware('role:admin')->group(function () {
 // CUSTOMER ROUTES
 Route::middleware(['role:customer'])->prefix('/customer')->group(function () {
     Route::controller(OrderController::class)->group(function () {
-        Route::get('/index', 'orderPage')->name('orderPage');
+        Route::get('/index/{selectedOrderId?}', 'orderPage')->name('orderPage');
+//        Route::get('/index/{selectedOrderId}', 'orderPageWithSelectedOrder')->name('orderPageWithSelectedOrder');
         Route::post('/cart/order', 'order')->name('cart.order');
     });
 
@@ -56,6 +57,7 @@ Route::middleware(['role:customer'])->prefix('/customer')->group(function () {
 
     Route::controller(HistoryController::class)->group(function () {
         Route::get('/history', 'history')->name('history');
+        Route::post('/history', 'selectOrder')->name('history.order.select');
     });
 });
 

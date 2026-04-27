@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
             $table->foreignId('dish_id')->constrained();
-            $table->foreignId('group_id')->constrained();
+            $table->foreignId('order_id')->constrained();
 //            $table->foreignId('rice_type_id')->constrained();
 
             $table->decimal('price');

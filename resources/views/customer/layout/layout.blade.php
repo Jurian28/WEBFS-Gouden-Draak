@@ -9,7 +9,7 @@
     @vite(['resources/js/app.js'])
 </head>
 
-<body>
+<body class="px-1">
 @include('customer.layout.navbar')
 @yield('content')
 </body>

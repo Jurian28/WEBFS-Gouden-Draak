@@ -2,6 +2,7 @@
     <OrderComponent
         :dishesByType="dishesByType"
         :dishesList="dishesList"
+        :startingCart="startingCart"
     >
         <template #order-button="{ cart, emptyCart }">
             <button @click="order(cart, emptyCart)" class="border px-2 rounded bg-white m-0.5 hover:bg-gray-200">Bestellen</button>
@@ -15,6 +16,10 @@ import OrderComponent from './OrderComponent.vue'
 export default {
     components: {OrderComponent},
     props: {
+        startingCart: {
+            type: [Object, null],
+            default: null
+        },
         dishesByType: Object,
         dishesList: Array
     },
