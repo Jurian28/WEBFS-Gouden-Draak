@@ -10,6 +10,13 @@ use Illuminate\Http\Request;
 
 class SellController extends Controller
 {
+    public function index() {
+        $dishesByType = Dish::all()->groupBy('type_dish');
+        $dishesList = Dish::all();
+        return view('employee.index', compact('dishesByType', 'dishesList'));
+    }
+
+
     public function sell(Request $request) {
         $validated = $request->validate([
             'cart' => 'required|array',

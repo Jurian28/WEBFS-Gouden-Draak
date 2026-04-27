@@ -15,7 +15,7 @@ class EnsureTableSelected
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!session()->has('table_id')) {
+        if (!session()->has('table_number')) {
             return abort(Response::HTTP_FORBIDDEN);
         }
 

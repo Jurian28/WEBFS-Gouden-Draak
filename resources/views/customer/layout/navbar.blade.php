@@ -6,12 +6,14 @@
     >
 
     <div class="flex gap-2">
-        <a href="{{ route('orderPage') }}" class="border px-3 py-1 rounded inline-block hover:bg-gray-200">
-            Bestellen
-        </a>
-        <a href="{{ route('history') }}" class="border px-3 py-1 rounded inline-block hover:bg-gray-200">
-            Geschiedenis
-        </a>
+        @if(auth()->check() && auth()->user()->role('customer'))
+            <a href="{{ route('orderPage') }}" class="border px-3 py-1 rounded inline-block hover:bg-gray-200">
+                Bestellen
+            </a>
+            <a href="{{ route('history') }}" class="border px-3 py-1 rounded inline-block hover:bg-gray-200">
+                Geschiedenis
+            </a>
+        @endif
     </div>
 
 </div>

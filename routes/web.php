@@ -23,7 +23,7 @@ Route::get('/news', function () {
 
 
 Route::controller(IndexController::class)->middleware('role:admin')->group(function () {
-    Route::get('/kassa', 'index')->name('kassa');
+    Route::get('/employee', 'index')->name('employee');
     Route::get('/dishes', 'dishes')->name('dishes');
     Route::get('/sales', 'sales')->name('sales');
     Route::get('/salesOverview', 'salesOverview')->name('salesOverview');
@@ -54,11 +54,11 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::middleware(['role:admin'])
     ->controller(TableSessionController::class)
-    ->prefix('kassa')
+    ->prefix('employee')
     ->group(function () {
 
         Route::get('/tables', 'index')
-            ->name('kassa.tables');
+            ->name('employee.tables');
 
         Route::post('/table/start', 'startTable')
             ->name('table.start');

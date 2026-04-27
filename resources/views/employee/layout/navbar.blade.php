@@ -9,7 +9,7 @@
     @if(auth()->check() && auth()->user()->role('admin'))
         <div class="flex gap-2">
 
-            <a href="{{ route('kassa') }}" class="border px-3 py-1 rounded inline-block hover:bg-gray-200">
+            <a href="{{ route('employee') }}" class="border px-3 py-1 rounded inline-block hover:bg-gray-200">
                 Kassa
             </a>
 
@@ -21,7 +21,7 @@
                 Verkoop Overzicht
             </a>
 
-            <a href="{{ route('kassa.tables') }}" class="border px-3 py-1 rounded inline-block hover:bg-gray-200">
+            <a href="{{ route('employee.tables') }}" class="border px-3 py-1 rounded inline-block hover:bg-gray-200">
                 Tafels
             </a>
 

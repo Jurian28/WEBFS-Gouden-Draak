@@ -10,9 +10,9 @@ class AuthController extends Controller
 {
     function login() {
         if (Auth::check()) {
-            return redirect('kassa');
+            return redirect('employee');
         }
-        return view('kassa.login');
+        return view('employee.login');
     }
 
 
@@ -30,7 +30,7 @@ class AuthController extends Controller
         }
 
         if (Auth::user()->role('admin')) {
-            return redirect("/kassa");
+            return redirect("/employee");
         } else if (Auth::user()->role('customer')) {
             return redirect("customer/chooseTable");
         }

@@ -13,7 +13,7 @@ class TableSessionController extends Controller
     {
         $tables = Table::all();
 
-        return view('kassa.tables.index', compact('tables'));
+        return view('employee.tables.index', compact('tables'));
     }
 
     // Start a group for a table
@@ -39,7 +39,7 @@ class TableSessionController extends Controller
     {
         $group->load('guests', 'table');
 
-        return view('kassa.tables.show', compact('group'));
+        return view('employee.tables.show', compact('group'));
     }
 
     // Add guest
@@ -63,6 +63,6 @@ class TableSessionController extends Controller
     {
         $group->update(['active' => false]);
 
-        return redirect('/kassa/tables');
+        return redirect('/employee/tables');
     }
 }

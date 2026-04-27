@@ -1,4 +1,4 @@
-@extends('kassa.layout.layout')
+@extends('employee.layout.layout')
 @section('title', 'Login')
 
 @section('content')

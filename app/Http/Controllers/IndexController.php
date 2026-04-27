@@ -4,21 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Dish;
 use App\Models\Sale;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
     public function index() {
         $dishesByType = Dish::all()->groupBy('type_dish');
         $dishesList = Dish::all();
-        return view('kassa.index', compact('dishesByType', 'dishesList'));
+        return view('employee.index', compact('dishesByType', 'dishesList'));
     }
 
     public function dishes() {
         $dishesByType = Dish::all()->groupBy('type_dish');
-        return view('kassa.dishes', compact('dishesByType'));
+        return view('employee.dishes', compact('dishesByType'));
     }
 
     public function sales() {
@@ -26,7 +24,7 @@ class IndexController extends Controller
         $revenue = 0;
         $exclVat = (($revenue/106)*100);
         $vat = $revenue - $exclVat;
-        return view('kassa.sales', compact('revenue', 'exclVat', 'vat'));
+        return view('employee.sales', compact('revenue', 'exclVat', 'vat'));
     }
 
     public function salesOverview(Request $request) {
@@ -49,6 +47,6 @@ class IndexController extends Controller
         $exclVat = (($revenue/106)*100);
         $vat = $revenue - $exclVat;
 
-        return view('kassa.sales', compact('sales', 'revenue', 'exclVat', 'vat'));
+        return view('employee.sales', compact('sales', 'revenue', 'exclVat', 'vat'));
     }
 }
