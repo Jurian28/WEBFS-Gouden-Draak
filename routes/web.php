@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\TableSessionController;
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\IndexController;
+use App\Http\Controllers\Customer\OrderController;
+use App\Http\Controllers\Customer\HistoryController;
+use App\Http\Controllers\Customer\ChooseTableController;
+use App\Http\Controllers\Employee\IndexController;
+use App\Http\Controllers\Employee\TableSessionController;
 use App\Http\Controllers\SellController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,8 +22,6 @@ Route::get('/news', function () {
     return view('/public/news');
 });
 
-
-
 Route::controller(IndexController::class)->middleware('role:admin')->group(function () {
     Route::get('/employee', 'index')->name('employee');
     Route::get('/dishes', 'dishes')->name('dishes');
@@ -33,15 +33,7 @@ Route::controller(SellController::class)->group(function () {
     Route::post('/cart/sell', 'sell')->name('cart.sell')->middleware('role:admin,customer');
 });
 
-Route::controller(CustomerController::class)->middleware('role:customer')->group(function () {
-    Route::get('/customer/chooseTable', 'chooseTableForm')->name('chooseTableForm');
-    Route::post('/customer/chooseTable', 'chooseTable')->name('chooseTable');
-    Route::get('/customer/tableNumber', 'getTableNumber')->name('getTableNumber');
 
-    Route::get('/customer/index', 'orderPage')->name('orderPage');
-
-    Route::get('/customer/history', 'history')->name('history');
-});
 
 
 Route::controller(AuthController::class)->group(function () {
@@ -72,3 +64,22 @@ Route::middleware(['role:admin'])
         Route::post('/table/{group}/finish', 'finish')
             ->name('table.finish');
     });
+
+
+
+// CUSTOMER ROUTES
+Route::middleware(['role:customer'])->prefix('/customer')->group(function () {
+    Route::controller(OrderController::class)->group(function () {
+        Route::get('/index', 'orderPage')->name('orderPage');
+    });
+
+    Route::controller(ChooseTableController::class)->group(function () {
+        Route::get('/chooseTable', 'chooseTableForm')->name('chooseTableForm');
+        Route::post('/chooseTable', 'chooseTable')->name('chooseTable');
+        Route::get('/tableNumber', 'getTableNumber')->name('getTableNumber');
+    });
+
+    Route::controller(HistoryController::class)->group(function () {
+        Route::get('/history', 'history')->name('history');
+    });
+});

@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Customer;
 
-use App\Models\Dish;
-use App\Models\Group;
 use App\Models\Table;
 use Illuminate\Http\Request;
 
-class CustomerController extends Controller
+class ChooseTableController
 {
     public function chooseTableForm() {
         return view('customer.chooseTable');
@@ -42,16 +40,5 @@ class CustomerController extends Controller
         $tableNumber = session('table_number');
 
         return response()->json(['table_number' => $tableNumber] );
-    }
-
-    public function orderPage() {
-        $dishesByType = Dish::all()->groupBy('type_dish');
-        $dishesList = Dish::all();
-        return view('customer.index', compact('dishesByType', 'dishesList'));
-    }
-
-
-    public function history() {
-        return view('customer.history');
     }
 }

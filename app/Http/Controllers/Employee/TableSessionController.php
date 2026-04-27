@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Employee;
 
-use App\Models\Table;
+use App\Http\Controllers\Controller;
 use App\Models\Group;
+use App\Models\Table;
 use Illuminate\Http\Request;
 
 class TableSessionController extends Controller
