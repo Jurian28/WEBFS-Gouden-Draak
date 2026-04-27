@@ -8,16 +8,9 @@ use App\Models\Sale;
 use App\Models\Table;
 use Illuminate\Http\Request;
 
-class SellController extends Controller
+class CreateOrderController extends Controller
 {
-    public function index() {
-        $dishesByType = Dish::all()->groupBy('type_dish');
-        $dishesList = Dish::all();
-        return view('employee.index', compact('dishesByType', 'dishesList'));
-    }
-
-
-    public function sell(Request $request) {
+    public function order(Request $request) {
         $validated = $request->validate([
             'cart' => 'required|array',
             'table_number' => 'required|integer'
@@ -29,7 +22,6 @@ class SellController extends Controller
             ->where('active', true)
             ->first();
 
-
         if (!$group) {
             return response()->json([
                 'success' => false,
@@ -37,10 +29,6 @@ class SellController extends Controller
             ]);
         }
 
-        return $this->addSales($cart, $group->id);
-    }
-
-    private function addSales($cart, int $groupId) {
         foreach ($cart as $id => $amount) {
             $dishPrice = Dish::find($id)->price;
 
@@ -48,7 +36,7 @@ class SellController extends Controller
                 'dish_id' => $id,
                 'amount' => $amount,
                 'price' => $dishPrice,
-                'group_id' => $groupId
+                'group_id' => $group->id
             ]);
 
             $sale->save();

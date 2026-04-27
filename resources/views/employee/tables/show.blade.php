@@ -18,7 +18,7 @@
 
     <h3 class="font-bold mb-2">Add guest</h3>
 
-    <form method="POST" action="/employee/table/{{ $group->id }}/guest" class="space-y-2">
+    <form method="POST" action="{{ route('table.guest.add', [$group->id]) }}" class="space-y-2">
         @csrf
 
         <input type="text" name="name" placeholder="Name" class="border p-1 w-full">
@@ -31,7 +31,7 @@
 
     <hr class="my-4">
 
-    <form method="POST" action="/employee/table/{{ $group->id }}/finish">
+    <form method="POST" action="{{ route('table.finish', [$group->id]) }}">
         @csrf
         <button class="bg-red-500 text-white px-3 py-1 rounded">
             Finish table session

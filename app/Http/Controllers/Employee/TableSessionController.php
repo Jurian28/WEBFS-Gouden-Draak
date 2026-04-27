@@ -64,6 +64,6 @@ class TableSessionController extends Controller
     {
         $group->update(['active' => false]);
 
-        return redirect('/employee/tables');
+        return redirect()->route('employee.tables');
     }
 }

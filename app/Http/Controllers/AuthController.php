@@ -15,7 +15,6 @@ class AuthController extends Controller
         return view('employee.login');
     }
 
-
     function authenticate(Request $request): RedirectResponse
     {
         $credentials = $request->validate([

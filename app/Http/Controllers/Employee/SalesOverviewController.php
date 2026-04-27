@@ -7,21 +7,9 @@ use App\Models\Dish;
 use App\Models\Sale;
 use Illuminate\Http\Request;
 
-class IndexController extends Controller
+class SalesOverviewController extends Controller
 {
-    public function index() {
-        $dishesByType = Dish::all()->groupBy('type_dish');
-        $dishesList = Dish::all();
-        return view('employee.index', compact('dishesByType', 'dishesList'));
-    }
-
-    public function dishes() {
-        $dishesByType = Dish::all()->groupBy('type_dish');
-        return view('employee.dishes', compact('dishesByType'));
-    }
-
     public function sales() {
-
         $revenue = 0;
         $exclVat = (($revenue/106)*100);
         $vat = $revenue - $exclVat;

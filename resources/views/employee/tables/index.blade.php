@@ -5,7 +5,7 @@
     <div class="grid grid-cols-3 gap-4">
 
         @foreach($tables as $table)
-            <form method="POST" action="/employee/table/start" class="border p-4 rounded">
+            <form method="POST" action="{{ route('table.start') }}" class="border p-4 rounded">
                 @csrf
 
                 <div class="font-bold mb-2">

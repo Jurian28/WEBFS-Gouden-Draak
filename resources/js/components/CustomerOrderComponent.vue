@@ -37,7 +37,7 @@ export default {
         async order(cart, emptyCart) {
             const tableNumber = await this.getTableNumber();
 
-            fetch(route('cart.sell'), {
+            fetch(route('cart.order'), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
