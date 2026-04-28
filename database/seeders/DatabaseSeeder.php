@@ -27,6 +27,13 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('test')
         ]);
 
+
+        DB::table('users')->insert([
+            'id' => 3,
+            'user_type' => 'employee',
+            'password' => Hash::make('test')
+        ]);
+
         $this->call([
             DishSeeder::class,
             GuestSeeder::class,

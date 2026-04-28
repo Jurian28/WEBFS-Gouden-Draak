@@ -17,9 +17,11 @@ return new class extends Migration
             $table->string('menu_affix', 3)->nullable();
             $table->string('name');
             $table->decimal('price');
-            $table->string('type_dish');
+            $table->foreignId('dish_type_id')->constrained();
             $table->text('description')->nullable();
             $table->timestamps();
+
+            $table->unique(['menu_number', 'menu_affix']);
         });
     }
 

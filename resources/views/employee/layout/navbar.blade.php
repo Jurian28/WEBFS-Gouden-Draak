@@ -6,7 +6,7 @@
         class="h-10"
     >
 
-    @if(auth()->check() && auth()->user()->role('admin'))
+    @if(auth()->check() && auth()->user()->role('employee'))
         <div class="flex gap-2">
 
             <a href="{{ route('employee') }}" class="border px-3 py-1 rounded inline-block hover:bg-gray-200">

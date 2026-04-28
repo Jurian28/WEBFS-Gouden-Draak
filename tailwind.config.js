@@ -5,7 +5,11 @@ export default {
         "./resources/**/*.vue",
     ],
     theme: {
-        extend: {},
+        extend: {
+            fontFamily: {
+                chinese: ['chinese_takeawayregular', 'sans-serif'],
+            },
+        },
     },
     plugins: [],
 }

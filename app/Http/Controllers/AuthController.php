@@ -28,10 +28,12 @@ class AuthController extends Controller
             ]);
         }
 
-        if (Auth::user()->role('admin')) {
+        if (Auth::user()->role('employee')) {
             return redirect("/employee");
         } else if (Auth::user()->role('customer')) {
             return redirect("customer/chooseTable");
+        } else if (Auth::user()->role('admin')) {
+            return redirect()->route("admin.dishes.index");
         }
 
         return abort(404, 'User type not allowed');

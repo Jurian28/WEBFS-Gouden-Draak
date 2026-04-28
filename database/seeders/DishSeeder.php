@@ -14,6 +14,24 @@ class DishSeeder extends Seeder
      */
     public function run(): void
     {
+        $types = [
+            'SOEP',
+            'VOORGERECHT',
+        ];
+
+        $typeMap = [];
+        $order = 1;
+
+        foreach ($types as $type) {
+            $id = DB::table('dish_types')->insertGetId([
+                'name' => $type,
+                'order' => $order,
+            ]);
+
+            $order++;
+            $typeMap[$type] = $id;
+        }
+
         $data = [
             [
                 'menu_number' => 1,
@@ -147,10 +165,14 @@ class DishSeeder extends Seeder
         ];
 
         foreach ($data as $dish) {
-            DB::table('dishes')->insert($dish);
-            DB::table('dishes')->insert($dish);
-            DB::table('dishes')->insert($dish);
-            DB::table('dishes')->insert($dish);
+            DB::table('dishes')->insert([
+                'menu_number'   => $dish['menu_number'],
+                'menu_affix'    => $dish['menu_affix'],
+                'name'          => $dish['name'],
+                'price'         => $dish['price'],
+                'dish_type_id'  => $typeMap[$dish['type_dish']],
+                'description'   => $dish['description'],
+            ]);
         }
     }
 }

@@ -11,7 +11,7 @@ class Dish extends Model
         'menu_affix',
         'name',
         'price',
-        'type_dish',
+        'dish_type_id',
         'description',
     ];
 
@@ -23,5 +23,10 @@ class Dish extends Model
     public function discounts()
     {
         return $this->belongsToMany(Discount::class, 'dish_discount');
+    }
+
+    public function type()
+    {
+        return $this->belongsTo(DishType::class, 'dish_type_id');
     }
 }

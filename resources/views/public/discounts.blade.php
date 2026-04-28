@@ -2,56 +2,66 @@
 
 @section('content')
 
-    <div class="container py-5">
+    <div class="border border-black bg-[floralwhite] max-w-5xl mx-auto py-10 px-6 text-center text-lg">
 
-        <h1 class="mb-4">Current Discounts</h1>
+        <h1 class="text-3xl font-extrabold mb-10">
+            Current Discounts
+        </h1>
 
         @if($discounts->isEmpty())
-            <p>No discounts available at the moment.</p>
+
+            <p class="text-lg">
+                No discounts available at the moment.
+            </p>
+
         @else
 
-            <div class="row g-4">
+            <div class="space-y-10">
 
                 @foreach($discounts as $discount)
-                    <div class="col-12 col-md-6 col-lg-4">
 
-                        <div class="card h-100 shadow-sm">
+                    <div class="border border-black/30 p-6">
 
-                            <div class="card-body">
+                        <!-- TITLE -->
+                        <h2 class="text-2xl font-bold mb-2">
+                            {{ $discount->name }}
+                        </h2>
 
-                                <h4 class="card-title">
-                                    {{ $discount->name }}
-                                </h4>
+                        <!-- DESCRIPTION -->
+                        <p class="mb-4 text-black/70">
+                            {{ $discount->description }}
+                        </p>
 
-                                <p class="text-muted mb-2">
-                                    {{ $discount->description }}
-                                </p>
-
-                                <div class="mb-3">
-                                <span class="badge bg-success">
-                                    {{ $discount->percentage }}% OFF
-                                </span>
-                                </div>
-
-                                <h6>Applies to:</h6>
-
-                                @if($discount->dishes->isEmpty())
-                                    <p class="text-muted">No dishes linked.</p>
-                                @else
-                                    <ul class="list-unstyled mb-0">
-                                        @foreach($discount->dishes as $dish)
-                                            <li>
-                                                • {{ $dish->name }}
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                @endif
-
-                            </div>
-
+                        <!-- BADGE -->
+                        <div class="mb-6">
+                        <span class="inline-block border border-black px-3 py-1 font-bold">
+                            {{ $discount->percentage }}% OFF
+                        </span>
                         </div>
 
+                        <!-- DISHES -->
+                        <h3 class="font-semibold mb-2">
+                            Applies to:
+                        </h3>
+
+                        @if($discount->dishes->isEmpty())
+                            <p class="text-black/60">
+                                No dishes linked.
+                            </p>
+                        @else
+                            <table class="mx-auto text-lg">
+                                @foreach($discount->dishes as $dish)
+                                    <tr>
+                                        <td class="text-left font-medium py-1">
+                                            • {{ $dish->name }}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </table>
+                        @endif
+
                     </div>
+
                 @endforeach
 
             </div>

@@ -8,7 +8,9 @@ use App\Models\Dish;
 class MenuController extends Controller
 {
     public function dishes() {
-        $dishesByType = Dish::all()->groupBy('type_dish');
+        $dishesByType = Dish::with('type')
+            ->get()
+            ->groupBy(fn ($dish) => $dish->type->name);
         return view('employee.dishes', compact('dishesByType'));
     }
 }

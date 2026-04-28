@@ -1,9 +1,11 @@
 @extends('public.layout.layout')
 
 @section('content')
-    <div style="border:1px solid black; background:floralwhite; margin-bottom: 2px; padding-top: 18px; padding-bottom: 18px">
-        <h3>Door de Corona crisis is De Gouden Draak op het moment slechts beperkt open.
-            <br>Het restaurant-gedeelte is gesloten. U kan uw favoriete gerechten nog wel afhalen.
+    <div class="border border-black bg-[floralwhite] mb-1 py-5 px-6 text-center text-lg font-bold">
+        <h3 class="leading-relaxed">
+            Door de Corona crisis is De Gouden Draak op het moment slechts beperkt open.
+            <br>
+            Het restaurant-gedeelte is gesloten. U kan uw favoriete gerechten nog wel afhalen.
         </h3>
     </div>
 @endsection

@@ -1,23 +1,49 @@
-<div style="display: flex; flex-wrap: nowrap; justify-content: space-between; margin-bottom: 50px">
-    <img src="{{ asset('images/logos/dragon-small.png') }}" style="float:left;height:200px" alt="Golden Dragon">
-    <div>
-        <h2 style="margin: 0; font-size:40px;font-weight:bold;color:yellow">Chinees Indische Specialiteiten</h2>
-        <h1 style="margin: 0; font-size:50px;font-weight:bold;color:yellow">De Gouden Draak</h1>
+<div class="flex flex-wrap justify-between items-center mb-12">
+    <!-- LEFT IMAGE -->
+    <img
+        src="{{ asset('images/logos/dragon-small.png') }}"
+        alt="Golden Dragon"
+        class="h-[200px] object-contain"
+    >
 
-        <nav style="display: flex; justify-content: center; gap: 4px; background-color: red; padding: 5px; padding-top: 16px;">
+    <!-- CENTER CONTENT -->
+    <div class="text-center flex-1">
+
+        <h2 class="m-0 text-[40px] font-bold text-[#ffff00] font-[chinese_takeawayregular]">
+            Chinees Indische Specialiteiten
+        </h2>
+
+        <h1 class="m-0 text-[50px] font-bold text-[#ffff00] font-[chinese_takeawayregular]">
+            De Gouden Draak
+        </h1>
+
+        <!-- NAV -->
+        <nav class="flex justify-center gap-1 bg-[#ff0000] p-2 pt-4 mt-4 flex-wrap">
+
             <a href="{{ route('public.menu') }}"
-               style="color: white; text-align: center; padding: 10px 30px; background: linear-gradient(to bottom, #00ffff, #0000ff); border: 1px solid white; text-decoration: none;">
+               class="text-white text-center px-8 py-2 border border-white bg-gradient-to-b from-cyan-300 to-blue-700 no-underline hover:opacity-90">
                 Menukaart
             </a>
+
             <a href="{{ route('public.news') }}"
-               style="color: white; text-align: center; padding: 10px 30px; background: linear-gradient(to bottom, #00ffff, #0000ff); border: 1px solid white; text-decoration: none;">
+               class="text-white text-center px-8 py-2 border border-white bg-gradient-to-b from-cyan-300 to-blue-700 no-underline hover:opacity-90">
                 Nieuws
             </a>
+
             <a href="{{ route('public.contact') }}"
-               style="color: white; text-align: center; padding: 10px 30px; background: linear-gradient(to bottom, #00ffff, #0000ff); border: 1px solid white; text-decoration: none;">
+               class="text-white text-center px-8 py-2 border border-white bg-gradient-to-b from-cyan-300 to-blue-700 no-underline hover:opacity-90">
                 Contact
             </a>
+
         </nav>
+
     </div>
-    <img src="{{ asset('images/logos/dragon-small-flipped.png') }}" style="float:right;height:200px" alt="Golden Dragon">
+
+    <!-- RIGHT IMAGE -->
+    <img
+        src="{{ asset('images/logos/dragon-small-flipped.png') }}"
+        alt="Golden Dragon"
+        class="h-[200px] object-contain"
+    >
+
 </div>

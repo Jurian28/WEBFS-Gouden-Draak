@@ -22,8 +22,8 @@ Route::controller(PublicController::class)->group(function () {
 });
 
 // EMPLOYEE ROUTES
-Route::middleware('role:admin')->group(function () {
-    Route::controller(SalesOverviewController::class)->middleware('role:admin')->group(function () {
+Route::middleware('role:employee')->group(function () {
+    Route::controller(SalesOverviewController::class)->group(function () {
         Route::get('/sales', 'sales')->name('sales');
         Route::get('/salesOverview', 'salesOverview')->name('salesOverview');
     });
@@ -70,6 +70,15 @@ Route::middleware(['role:customer'])->prefix('/customer')->group(function () {
         Route::get('/history', 'history')->name('history');
         Route::post('/history', 'selectOrder')->name('history.order.select');
     });
+});
+
+//ADMIN ROUTES
+use App\Http\Controllers\Admin\DishController;
+use App\Http\Controllers\Admin\DishTypeController;
+
+Route::middleware('role:admin')->prefix('admin')->name('admin.')->group(function () {
+    Route::resource('dishes', DishController::class);
+    Route::resource('dish-types', DishTypeController::class);
 });
 
 // AUTH ROUTES
