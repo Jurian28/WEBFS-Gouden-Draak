@@ -33,7 +33,7 @@
         <span style="font-family:'chinese_takeawayregular'; color: yellow; text-align: center; font-size: 30px">De Gouden Draak</span>
         <img style="vertical-align: middle;" src="{{ asset('images/logos/dragon-small-flipped.png') }}" alt="Golden Dragon" height="50px">
     </div>
-    <a href="paginas/aanbiedingen.html" style="color:yellow;font-weight:bold;text-decoration: none; ">
+    <a href="{{route('public.discounts')}}" style="color:yellow;font-weight:bold;text-decoration: none; ">
         <div style="overflow: hidden; white-space: nowrap;">
             <div style=" display: inline-block; animation: scroll-left 18s linear infinite; font-weight: bold; margin-top: 15px; width: 420px">
                 Welkom bij De Gouden Draak. Klik op deze tekst om de aanbiedingen van deze week te zien!

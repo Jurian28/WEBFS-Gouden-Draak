@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Customer;
 
+use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Table;
 use Illuminate\Http\Request;
 
-class HistoryController
+class HistoryController extends Controller
 {
     public function history() {
         $tableNumber = session('table_number');

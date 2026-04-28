@@ -4,17 +4,22 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Customer\OrderController;
 use App\Http\Controllers\Customer\HistoryController;
 use App\Http\Controllers\Customer\ChooseTableController;
+use App\Http\Controllers\Employee\DiscountController;
 use App\Http\Controllers\Employee\SalesOverviewController;
 use App\Http\Controllers\Employee\TableSessionController;
 use App\Http\Controllers\Employee\MenuController;
 use App\Http\Controllers\Employee\SellController;
+use App\Http\Controllers\Public\PublicController;
 use Illuminate\Support\Facades\Route;
 
 // PUBLIC ROUTES
-Route::get('/', function () { return view('/public/index'); });
-Route::get('/contact', function () { return view('/public/contact'); });
-Route::get('/menukaart', function () { return view('/public/MENUKAART'); });
-Route::get('/news', function () { return view('/public/news'); });
+Route::controller(PublicController::class)->group(function () {
+    Route::get('/', 'index')->name('public.index');
+    Route::get('/contact', 'contact')->name('public.contact');
+    Route::get('/menu', 'menu')->name('public.menu');
+    Route::get('/news', 'news')->name('public.news');
+    Route::get('/discounts', 'discounts')->name('public.discounts');
+});
 
 // EMPLOYEE ROUTES
 Route::middleware('role:admin')->group(function () {
@@ -33,12 +38,18 @@ Route::middleware('role:admin')->group(function () {
     });
 
     Route::controller(TableSessionController::class)->group(function () {
-            Route::get('/tables', 'index')->name('employee.tables');
-            Route::post('/table/start', 'startTable')->name('table.start');
-            Route::get('/table/{group}', 'show')->name('table.show');
-            Route::post('/table/{group}/guest', 'addGuest')->name('table.guest.add');
-            Route::post('/table/{group}/finish', 'finish')->name('table.finish');
-        });
+        Route::get('/tables', 'index')->name('employee.tables');
+        Route::post('/table/start', 'startTable')->name('table.start');
+        Route::get('/table/{group}', 'show')->name('table.show');
+        Route::post('/table/{group}/guest', 'addGuest')->name('table.guest.add');
+        Route::post('/table/{group}/finish', 'finish')->name('table.finish');
+    });
+
+    Route::controller(DiscountController::class)->group(function () {
+        Route::get('/discountsList', 'index')->name('discounts');
+        Route::get('/discountsList/add', 'createDiscount')->name('discounts.create.form');
+        Route::post('/discountList', 'store')->name('discounts.store');
+    });
 });
 
 // CUSTOMER ROUTES

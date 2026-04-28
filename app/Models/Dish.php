@@ -19,4 +19,9 @@ class Dish extends Model
     {
         return $this->hasMany(Sale::class);
     }
+
+    public function discounts()
+    {
+        return $this->belongsToMany(Discount::class, 'dish_discount');
+    }
 }

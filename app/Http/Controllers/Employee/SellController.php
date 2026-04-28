@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Employee;
 
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\CreateOrderController;
 use App\Models\Dish;
 use Illuminate\Http\Request;
 
-class SellController
+class SellController extends Controller
 {
     public function index() {
         $dishesByType = Dish::all()->groupBy('type_dish');

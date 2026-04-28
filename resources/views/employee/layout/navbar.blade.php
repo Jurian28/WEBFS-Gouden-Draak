@@ -13,6 +13,10 @@
                 Kassa
             </a>
 
+            <a href="{{ route('discounts') }}" class="border px-3 py-1 rounded inline-block hover:bg-gray-200">
+                Aanbiedingen
+            </a>
+
             <a href="{{ route('dishes') }}" class="border px-3 py-1 rounded inline-block hover:bg-gray-200">
                 Gerechten
             </a>

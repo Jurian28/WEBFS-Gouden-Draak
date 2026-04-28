@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Customer;
 
+use App\Http\Controllers\Controller;
 use App\Models\Table;
 use Illuminate\Http\Request;
 
-class ChooseTableController
+class ChooseTableController extends Controller
 {
     public function chooseTableForm() {
         return view('customer.chooseTable');

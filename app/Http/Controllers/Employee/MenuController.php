@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Employee;
 
+use App\Http\Controllers\Controller;
 use App\Models\Dish;
 
-class MenuController
+class MenuController extends Controller
 {
     public function dishes() {
         $dishesByType = Dish::all()->groupBy('type_dish');
