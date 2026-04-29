@@ -30,7 +30,7 @@ class SalesOverviewController extends Controller
 
         $revenue = 0;
         $sales->each(function ($sale) use (&$revenue) {
-            $revenue += $sale->dish->price * $sale->amount;
+            $revenue += $sale->price * $sale->amount;
         });
 
         $exclVat = (($revenue/106)*100);

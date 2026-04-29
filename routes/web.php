@@ -16,9 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::controller(PublicController::class)->group(function () {
     Route::get('/', 'index')->name('public.index');
     Route::get('/contact', 'contact')->name('public.contact');
-    Route::get('/menu', 'menu')->name('public.menu');
     Route::get('/news', 'news')->name('public.news');
     Route::get('/discounts', 'discounts')->name('public.discounts');
+
+    Route::get('/menu', 'menu')->name('public.menu');
+    Route::post('/favorites/toggle', 'toggleFavorite')->name('public.favorites.toggle');
 });
 
 // EMPLOYEE ROUTES
