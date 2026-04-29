@@ -8,7 +8,7 @@
             <span
                 class="block w-[91px] h-[91px] bg-no-repeat bg-contain bg-center"
                 style="background-image: url('{{ asset('images/corner-piece.svg') }}');">
-        </span>
+            </span>
 
             <div class="flex-1 flex flex-col">
                 <span class="h-[4px] bg-[#ffff00] mb-[25px]"></span>
@@ -23,7 +23,7 @@
                 transform: rotate(90deg);
                 transform-origin: center;
             ">
-        </span>
+            </span>
 
         </div>
 
@@ -60,7 +60,7 @@
                 transform: rotate(270deg);
                 transform-origin: center;
             ">
-        </span>
+            </span>
 
             <div class="flex-1 flex flex-col">
                 <span class="h-[4px] bg-[#ffff00] mb-[25px] mt-[58px]"></span>
@@ -75,9 +75,7 @@
                 transform: rotate(180deg);
                 transform-origin: center;
             ">
-        </span>
-
+            </span>
         </div>
-
     </div>
 </div>

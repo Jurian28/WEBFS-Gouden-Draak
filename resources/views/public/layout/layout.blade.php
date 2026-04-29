@@ -8,14 +8,6 @@
     @vite(['resources/js/app.js'])
 
     <style>
-        @font-face {
-            font-family: 'chinese_takeawayregular';
-            src: url('{{ asset('fonts/chinesetakeaway-webfont.woff2') }}') format('woff2'),
-            url('{{ asset('fonts/chinesetakeaway-webfont.woff') }}') format('woff');
-            font-weight: normal;
-            font-style: normal;
-        }
-
         @keyframes scroll-left {
             from { transform: translateX(100%); }
             to { transform: translateX(-100%); }
@@ -23,7 +15,7 @@
     </style>
 </head>
 
-<body class="bg-[#8b0000] m-[15px] mx-[50px] font-[chinese_takeawayregular]">
+<body class="bg-[#8b0000] m-[15px] mx-[50px] font-serif">
 
 {{-- HEADER --}}
 <div class="bg-[#ff0000] p-[5px] h-[50px] flex justify-evenly items-center">
@@ -31,7 +23,7 @@
     {{-- LEFT --}}
     <div class="flex items-center gap-2">
         <img src="{{ asset('images/logos/dragon-small.png') }}" class="h-[50px]" alt="">
-        <span class="text-[#ffff00] text-[30px]">
+        <span class="text-[#ffff00] text-[30px] font-chinese">
             De Gouden Draak
         </span>
         <img src="{{ asset('images/logos/dragon-small-flipped.png') }}" class="h-[50px]" alt="">
@@ -49,7 +41,7 @@
     {{-- RIGHT --}}
     <div class="flex items-center gap-2">
         <img src="{{ asset('images/logos/dragon-small.png') }}" class="h-[50px]" alt="">
-        <span class="text-[#ffff00] text-[30px]">
+        <span class="text-[#ffff00] text-[30px] font-chinese">
             De Gouden Draak
         </span>
         <img src="{{ asset('images/logos/dragon-small-flipped.png') }}" class="h-[50px]" alt="">
