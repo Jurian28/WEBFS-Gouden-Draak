@@ -34,7 +34,9 @@ class CreateOrderController extends Controller
         $order->save();
 
         foreach ($cart as $id => $amount) {
-            $dishPrice = Dish::find($id)->price;
+            $dish = Dish::with('discounts')->findOrFail($id);
+
+            $dishPrice = $dish->discountedPrice();
 
             $sale = new Sale([
                 'dish_id' => $id,

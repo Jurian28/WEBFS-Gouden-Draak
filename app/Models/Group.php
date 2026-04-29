@@ -9,7 +9,8 @@ class Group extends Model
     protected $fillable = [
         'menu_type',
         'table_id',
-        'active'
+        'active',
+        'deluxe'
     ];
 
     public function table() {

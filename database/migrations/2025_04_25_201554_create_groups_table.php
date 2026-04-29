@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('menu_type', 45)->default('normal');
             $table->foreignId('table_id');
             $table->boolean('active')->default(true);
+            $table->boolean('deluxe')->default(false);
             $table->timestamps();
         });
     }

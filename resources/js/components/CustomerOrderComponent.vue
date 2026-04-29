@@ -56,7 +56,7 @@ export default {
                         alert('Bestelling succesvol!');
                         emptyCart();
                     } else {
-                        alert('ERROR: Bestelling niet succesvol.');
+                        alert(result.message ?? 'Bestelling niet succesvol.');
                     }
                 });
         },

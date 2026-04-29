@@ -11,8 +11,10 @@ use Illuminate\Http\Request;
 class OrderController extends Controller
 {
     public function orderPage(?int $selectedOrderId = null) {
-        $dishesByType = Dish::all()->groupBy('type_dish');
-        $dishesList = Dish::all();
+        $dishes = Dish::with('discounts')->get();
+
+        $dishesByType = $dishes->groupBy('type_dish');
+        $dishesList = $dishes;
 
         if ($selectedOrderId) {
             $order = Order::find($selectedOrderId);
@@ -20,16 +22,6 @@ class OrderController extends Controller
         } else {
             $cart = null;
         }
-
-        return view('customer.index', compact('dishesByType', 'dishesList', 'cart'));
-
-    }
-
-    public function orderPageWithSelectedOrder(int $selectedOrderId) {
-        $dishesByType = Dish::all()->groupBy('type_dish');
-        $dishesList = Dish::all();
-
-        $cart = Order::find($selectedOrderId)->getVueCart();
 
         return view('customer.index', compact('dishesByType', 'dishesList', 'cart'));
 

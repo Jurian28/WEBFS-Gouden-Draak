@@ -17,7 +17,23 @@
                         </td>
 
                         <td class="w-[10%]">
-                            € {{ formatPrice(dish.price) }}
+                            <div v-if="getActiveDiscount(dish)">
+                                <div class="line-through text-gray-400 text-xs">
+                                    € {{ formatPrice(dish.price) }}
+                                </div>
+
+                                <div class="text-red-600 font-bold">
+                                    € {{ formatPrice(getDiscountedPrice(dish)) }}
+                                </div>
+
+                                <div class="text-[10px] text-red-500">
+                                    -{{ getActiveDiscount(dish).percentage }}%
+                                </div>
+                            </div>
+
+                            <div v-else>
+                                € {{ formatPrice(dish.price) }}
+                            </div>
                         </td>
 
                         <td class="w-[10%]">
@@ -51,7 +67,7 @@
                         </td>
 
                         <td class="w-[10%]">
-                            € {{ formatPrice(dish.price) }}
+                            € {{ formatPrice(getDiscountedPrice(dish)) }}
                         </td>
 
                         <td class="w-[10%]">
@@ -96,7 +112,6 @@ export default {
 
     methods: {
         formatPrice(price) {
-            console.log(this.cart)
             return Number(price).toFixed(2).replace('.', ',')
         },
 
@@ -128,7 +143,29 @@ export default {
             } else {
                 this.cart[dishId] = value;
             }
-        }
+        },
+
+        getActiveDiscount(dish) {
+            if (!dish.discounts || !dish.discounts.length) return null;
+
+            const now = new Date();
+
+            return dish.discounts
+                .filter(d => {
+                    const start = new Date(d.start_time);
+                    const end = new Date(d.end_time);
+                    return now >= start && now <= end;
+                })
+                .sort((a, b) => b.percentage - a.percentage)[0] || null;
+        },
+
+        getDiscountedPrice(dish) {
+            const discount = this.getActiveDiscount(dish);
+
+            if (!discount) return Number(dish.price);
+
+            return Number(dish.price) * (1 - discount.percentage / 100);
+        },
     },
 
     computed: {
@@ -145,11 +182,19 @@ export default {
 
         totalPrice() {
             let total = 0;
+
             for (const dish of this.getCart) {
-                total += Number(dish.price) * Number(dish.amount);
+                total += this.getDiscountedPrice(dish) * Number(dish.amount);
             }
+
             return this.formatPrice(total);
         }
+    },
+    mounted() {
+        console.log('DISHES LIST:', this.dishesList);
+        console.log('FIRST DISH:', this.dishesList[0]);
+        console.log('DISCOUNTS:', this.dishesList[0]?.discounts);
     }
+
 }
 </script>

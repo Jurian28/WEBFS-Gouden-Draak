@@ -86,7 +86,7 @@
                                 </td>
 
                                 <td class="p-3">
-                                    € {{ number_format($sale->dish->price, 2, ',', '.') }}
+                                    € {{ number_format($sale->price, 2, ',', '.') }}
                                 </td>
 
                                 <td class="p-3">
@@ -94,7 +94,7 @@
                                 </td>
 
                                 <td class="p-3 font-semibold">
-                                    € {{ number_format($sale->dish->price * $sale->amount, 2, ',', '.') }}
+                                    € {{ number_format($sale->price * $sale->amount, 2, ',', '.') }}
                                 </td>
 
                             </tr>

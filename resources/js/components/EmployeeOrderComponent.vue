@@ -42,7 +42,7 @@ export default {
                         alert('Verkoop succesvol!');
                         emptyCart();
                     } else {
-                        alert('ERROR: Verkoop niet succesvol.');
+                        alert(result.message ?? 'Bestelling niet succesvol.');
                     }
                 });
         },

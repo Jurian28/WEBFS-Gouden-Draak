@@ -14,6 +14,11 @@
 
                 <input type="hidden" name="table_id" value="{{ $table->id }}">
 
+                <label class="block mb-2">
+                    <input type="checkbox" name="deluxe" value="1">
+                    DELUXE menu
+                </label>
+
                 <button class="bg-blue-500 text-white px-3 py-1 rounded">
                     Start session
                 </button>

@@ -22,8 +22,26 @@
 
                             </td>
 
-                            <td class="w-[10%]">
-                                € {{ number_format($dish->price, 2, ',', '.') }}
+                            <td class="w-[10%] text-right">
+                                @php $discount = $dish->activeDiscount(); @endphp
+
+                                @if($discount)
+                                    <div>
+                                        <span class="line-through text-black/50">
+                                            € {{ number_format($dish->price, 2, ',', '.') }}
+                                        </span>
+                                    </div>
+
+                                    <div class="text-red-600 font-bold">
+                                        € {{ number_format($dish->discountedPrice(), 2, ',', '.') }}
+                                    </div>
+
+                                    <div class="text-xs text-red-500">
+                                        -{{ $discount->percentage }}%
+                                    </div>
+                                @else
+                                    € {{ number_format($dish->price, 2, ',', '.') }}
+                                @endif
                             </td>
                         </tr>
                     @endforeach

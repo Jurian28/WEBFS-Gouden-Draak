@@ -10,7 +10,7 @@ class AuthController extends Controller
 {
     function login() {
         if (Auth::check()) {
-            return redirect('employee');
+            return $this->sendLoggedInUserToView();
         }
         return view('employee.login');
     }
@@ -28,6 +28,16 @@ class AuthController extends Controller
             ]);
         }
 
+        return $this->sendLoggedInUserToView();
+    }
+
+    public function logout(): RedirectResponse
+    {
+        Auth::logout();
+        return redirect("/login");
+    }
+
+    private function sendLoggedInUserToView() {
         if (Auth::user()->role('employee')) {
             return redirect("/employee");
         } else if (Auth::user()->role('customer')) {
@@ -37,11 +47,5 @@ class AuthController extends Controller
         }
 
         return abort(404, 'User type not allowed');
-    }
-
-    public function logout(): RedirectResponse
-    {
-        Auth::logout();
-        return redirect("/login");
     }
 }

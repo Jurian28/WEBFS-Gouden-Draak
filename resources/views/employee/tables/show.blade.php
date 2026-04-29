@@ -18,6 +18,16 @@
 
     <h3 class="font-bold mb-2">Add guest</h3>
 
+    @if($errors->any())
+        <div class="bg-red-100 text-red-700 p-2 mb-2">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <form method="POST" action="{{ route('table.guest.add', [$group->id]) }}" class="space-y-2">
         @csrf
 

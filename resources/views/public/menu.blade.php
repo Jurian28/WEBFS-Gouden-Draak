@@ -36,7 +36,25 @@
 
                                 <!-- PRICE -->
                                 <td class="text-right font-bold whitespace-nowrap py-2">
-                                    € {{ number_format($dish->price, 2, ',', '.') }}
+                                    @php $discount = $dish->activeDiscount(); @endphp
+
+                                    @if($discount)
+                                        <div>
+                                            <span class="line-through text-black/50">
+                                                € {{ number_format($dish->price, 2, ',', '.') }}
+                                            </span>
+                                        </div>
+
+                                        <div class="text-red-600">
+                                            € {{ number_format($dish->discountedPrice(), 2, ',', '.') }}
+                                        </div>
+
+                                        <div class="text-xs text-red-500 font-normal">
+                                            -{{ $discount->percentage }}%
+                                        </div>
+                                    @else
+                                        € {{ number_format($dish->price, 2, ',', '.') }}
+                                    @endif
                                 </td>
 
                             </tr>
