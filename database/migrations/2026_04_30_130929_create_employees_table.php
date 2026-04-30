@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('table_rosters', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('table_id')->constrained();
-
-            $table->date('start_date');
-            $table->date('end_date');
+        Schema::create('employees', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('table_rosters');
+        Schema::dropIfExists('employees');
     }
 };

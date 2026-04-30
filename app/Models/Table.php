@@ -10,9 +10,9 @@ class Table extends Model
         'number'
     ];
 
-    public function tableRosters()
+    public function rosters()
     {
-        return $this->hasMany(Table_roster::class);
+        return $this->hasMany(Roster::class);
     }
 
     public function groups()

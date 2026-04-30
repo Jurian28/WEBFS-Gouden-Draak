@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\RosterController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Admin\DishController;
+use App\Http\Controllers\Admin\DishTypeController;
 use App\Http\Controllers\Customer\OrderController;
 use App\Http\Controllers\Customer\HistoryController;
 use App\Http\Controllers\Customer\ChooseTableController;
@@ -75,12 +78,15 @@ Route::middleware(['role:customer'])->prefix('/customer')->group(function () {
 });
 
 //ADMIN ROUTES
-use App\Http\Controllers\Admin\DishController;
-use App\Http\Controllers\Admin\DishTypeController;
 
 Route::middleware('role:admin')->prefix('admin')->name('admin.')->group(function () {
     Route::resource('dishes', DishController::class);
     Route::resource('dish-types', DishTypeController::class);
+
+
+    Route::get('/roster', [RosterController::class, 'index'])->name('roster.index');
+    Route::post('/roster/assign', [RosterController::class, 'assign'])->name('roster.assign');
+    Route::post('/employees', [RosterController::class, 'storeEmployee'])->name('employees.store');
 });
 
 // AUTH ROUTES

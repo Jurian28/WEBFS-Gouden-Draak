@@ -13,6 +13,10 @@
                 Gerechten
             </a>
 
+            <a href="{{ route('admin.roster.index') }}" class="border px-3 py-1 rounded inline-block hover:bg-gray-200">
+                Rooster
+            </a>
+
 
             <form action="{{ route('logout') }}" method="POST" class="inline hover:bg-gray-200">
                 @csrf
