@@ -4,11 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Roster extends Model
+class Shift extends Model
 {
     protected $fillable = [
         'employee_id',
-        'table_id',
         'date',
         'start_time',
         'end_time',
@@ -23,8 +22,8 @@ class Roster extends Model
         return $this->belongsTo(Employee::class);
     }
 
-    public function table()
+    public function tables()
     {
-        return $this->belongsTo(Table::class);
+        return $this->belongsToMany(Table::class, 'shift_table');
     }
 }

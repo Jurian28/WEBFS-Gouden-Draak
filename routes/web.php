@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\RosterController;
+use App\Http\Controllers\Admin\EmployeeController;
+use App\Http\Controllers\Admin\ShiftController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\DishController;
 use App\Http\Controllers\Admin\DishTypeController;
@@ -83,11 +84,14 @@ Route::middleware('role:admin')->prefix('admin')->name('admin.')->group(function
     Route::resource('dishes', DishController::class);
     Route::resource('dish-types', DishTypeController::class);
 
+    Route::get('/schedule', [ShiftController::class, 'index'])->name('schedule.index');
+    Route::post('/schedule/shifts', [ShiftController::class, 'store'])->name('schedule.shifts.store');
+    Route::post('/schedule/shifts/{shift}', [ShiftController::class, 'update'])->name('schedule.shifts.update');
 
-    Route::get('/roster', [RosterController::class, 'index'])->name('roster.index');
-    Route::post('/roster/assign', [RosterController::class, 'assign'])->name('roster.assign');
-    Route::post('/employees', [RosterController::class, 'storeEmployee'])->name('employees.store');
+    Route::resource('employees', EmployeeController::class);
+
 });
+
 
 // AUTH ROUTES
 Route::controller(AuthController::class)->group(function () {

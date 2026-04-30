@@ -13,8 +13,11 @@
                 Gerechten
             </a>
 
-            <a href="{{ route('admin.roster.index') }}" class="border px-3 py-1 rounded inline-block hover:bg-gray-200">
+            <a href="{{ route('admin.schedule.index') }}" class="border px-3 py-1 rounded inline-block hover:bg-gray-200">
                 Rooster
+            </a>
+            <a href="{{ route('admin.employees.index') }}" class="border px-3 py-1 rounded inline-block hover:bg-gray-200">
+                Medewerkers
             </a>
 
 

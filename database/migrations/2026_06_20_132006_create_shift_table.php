@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rosters', function (Blueprint $table) {
-            $table->foreignId('employee_id')->constrained();
-            $table->foreignId('table_id')->constrained();
-
+        Schema::create('shifts', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('employee_id')->constrained()->onDelete('cascade');
             $table->date('date');
 
             $table->time('start_time')->nullable();
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('table_rosters');
+        Schema::dropIfExists('shift');
     }
 };

@@ -13,6 +13,6 @@ class Employee extends Model
 
     public function roster()
     {
-        return $this->hasMany(Roster::class);
+        return $this->hasMany(Shift::class);
     }
 }

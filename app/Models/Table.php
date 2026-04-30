@@ -10,9 +10,9 @@ class Table extends Model
         'number'
     ];
 
-    public function rosters()
+    public function Shift()
     {
-        return $this->hasMany(Roster::class);
+        return $this->belongsToMany(Shift::class, 'shift_table');
     }
 
     public function groups()
@@ -23,4 +23,5 @@ class Table extends Model
     public function getActiveGroup(){
         return $this->groups()->where('active', 1)->first();
     }
+
 }
