@@ -38,7 +38,6 @@ class DatabaseSeeder extends Seeder
             DishSeeder::class,
             GuestSeeder::class,
             OrderSeeder::class,
-            RiceTypeSeeder::class,
             SaleSeeder::class,
             TableRosterSeeder::class,
             TableSeeder::class,
