@@ -1,6 +1,24 @@
 <template>
+    <div class="flex gap-2 mb-2">
+        <!-- search -->
+        <input
+            v-model="searchQuery"
+            type="text"
+            placeholder="Zoek naam of nummer..."
+            class="border px-2 rounded w-full"
+        />
+
+        <!-- category filter -->
+        <select v-model="selectedCategory" class="border px-2 rounded">
+            <option value="">Alle</option>
+            <option v-for="cat in categories" :key="cat" :value="cat">
+                {{ cat }}
+            </option>
+        </select>
+    </div>
+
     <OrderComponent
-        :dishesByType="dishesByType"
+        :dishesByType="filteredDishesByType"
         :dishesList="dishesList"
     >
         <template #order-button="{ cart, emptyCart }">
@@ -22,7 +40,9 @@ export default {
 
     data() {
         return {
-            tableNumber: null
+            tableNumber: null,
+            searchQuery: '',
+            selectedCategory: ''
         }
     },
 
@@ -47,5 +67,46 @@ export default {
                 });
         },
     },
+
+    computed: {
+        filteredDishesList() {
+            let query = (this.searchQuery ?? '').toLowerCase().trim();
+
+            return this.dishesList.filter(dish => {
+                const nameMatch = (dish.name ?? '').toLowerCase().includes(query);
+
+                const menuCode =
+                    `${dish.menu_number ?? ''}${dish.menu_affix ?? ''}`.toLowerCase();
+
+                const menuMatch = menuCode.includes(query);
+
+                const categoryMatch = this.selectedCategory
+                    ? dish.type?.name === this.selectedCategory
+                    : true;
+
+                return (nameMatch || menuMatch) && categoryMatch;
+            });
+        },
+
+        filteredDishesByType() {
+            const grouped = {};
+
+            this.filteredDishesList.forEach(dish => {
+                const type = dish.type?.name ?? 'Unknown';
+
+                if (!grouped[type]) {
+                    grouped[type] = [];
+                }
+
+                grouped[type].push(dish);
+            });
+
+            return grouped;
+        },
+
+        categories() {
+            return Object.keys(this.dishesByType);
+        }
+    }
 }
 </script>

@@ -189,12 +189,6 @@ export default {
 
             return this.formatPrice(total);
         }
-    },
-    mounted() {
-        console.log('DISHES LIST:', this.dishesList);
-        console.log('FIRST DISH:', this.dishesList[0]);
-        console.log('DISCOUNTS:', this.dishesList[0]?.discounts);
     }
-
 }
 </script>

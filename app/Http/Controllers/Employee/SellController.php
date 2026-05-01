@@ -10,12 +10,16 @@ use Illuminate\Http\Request;
 class SellController extends Controller
 {
     public function index() {
-        $dishes = Dish::with('discounts')->get();
+        $dishes = Dish::with(['discounts', 'type'])->get();
 
-        $dishesByType = $dishes->groupBy('type_dish');
-        $dishesList = $dishes;
+        $dishesByType = $dishes->groupBy(function ($dish) {
+            return $dish->type->name;
+        });
 
-        return view('employee.index', compact('dishesByType', 'dishesList'));
+        return view('employee.index', [
+            'dishesByType' => $dishesByType,
+            'dishesList' => $dishes
+        ]);
     }
 
     public function sell(Request $request) {
