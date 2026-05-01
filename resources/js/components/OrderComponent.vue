@@ -95,7 +95,6 @@
     </div>
 </template>
 <script>
-import { route } from 'ziggy-js'
 
 export default {
     props: {
