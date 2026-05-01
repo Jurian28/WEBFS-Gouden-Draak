@@ -14,7 +14,7 @@ class CreateOrderController extends Controller
     public function order(Request $request) {
         $validated = $request->validate([
             'cart' => 'required|array',
-            'table_number' => 'required|integer'
+            'table_number' => 'table|integer'
         ]);
 
         $cart = $validated['cart'];
@@ -24,7 +24,7 @@ class CreateOrderController extends Controller
         if (!$group) {
             return response()->json([
                 'success' => false,
-                'message' => 'Geen group gevonden voor deze tafel'
+                'message' => 'Geen groep gevonden voor deze tafel'
             ]);
         }
 
@@ -50,7 +50,7 @@ class CreateOrderController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Order placed'
+            'message' => 'Order geplaatst'
         ]);
     }
 }

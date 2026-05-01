@@ -14,17 +14,25 @@ use App\Http\Controllers\Employee\TableSessionController;
 use App\Http\Controllers\Employee\MenuController;
 use App\Http\Controllers\Employee\SellController;
 use App\Http\Controllers\Public\PublicController;
+use App\Http\Controllers\Public\TakeAwayController;
 use Illuminate\Support\Facades\Route;
 
 // PUBLIC ROUTES
-Route::controller(PublicController::class)->group(function () {
-    Route::get('/', 'index')->name('public.index');
-    Route::get('/contact', 'contact')->name('public.contact');
-    Route::get('/news', 'news')->name('public.news');
-    Route::get('/discounts', 'discounts')->name('public.discounts');
+Route::controller(PublicController::class)->name('public.')->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/contact', 'contact')->name('contact');
+    Route::get('/news', 'news')->name('news');
+    Route::get('/discounts', 'discounts')->name('discounts');
 
-    Route::get('/menu', 'menu')->name('public.menu');
-    Route::post('/favorites/toggle', 'toggleFavorite')->name('public.favorites.toggle');
+    Route::get('/menu', 'menu')->name('menu');
+    Route::post('/favorites/toggle', 'toggleFavorite')->name('favorites.toggle');
+
+});
+
+Route::controller(TakeAwayController::class)->name('public.')->group(function () {
+    Route::get('/takeAway', 'index')->name('takeAway');
+    Route::post('/takeAway', 'order')->name('cart.orderTakeAway');
+    Route::get('/thanksPage/{orderId}', 'thanksPage')->name('thanksPage');
 });
 
 // EMPLOYEE ROUTES

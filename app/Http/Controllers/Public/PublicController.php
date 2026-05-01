@@ -13,7 +13,6 @@ class PublicController extends Controller
     public function index() { return view('/public/index'); }
     public function contact() { return view('/public/contact'); }
     public function news() { return view('/public/news'); }
-
     public function menu(Request $request)
     {
         $types = DishType::with('dishes')->orderBy('order')->get();
@@ -64,7 +63,6 @@ class PublicController extends Controller
         return view('public.menu', compact('types', 'favorites'));
     }
 
-
     public function toggleFavorite(Request $request)
     {
         $dishId = (int) $request->input('dish_id');
@@ -81,7 +79,6 @@ class PublicController extends Controller
             Cookie::make('favorites', json_encode($favorites), 60 * 24 * 365)
         );
     }
-
     public function discounts() {
         $discounts = Discount::all();
         return view('/public/discounts', compact('discounts'));

@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('group_id')->constrained();
+            $table->string('name')->nullable();   // for takeaway
+            $table->foreignId('group_id')->nullable()->constrained();
             $table->timestamps();
         });
     }

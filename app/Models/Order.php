@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $fillable = [
-        'group_id'
+        'group_id',
+        'name'
     ];
 
     public function group() {

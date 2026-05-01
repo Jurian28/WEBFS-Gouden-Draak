@@ -35,6 +35,11 @@
                 Contact
             </a>
 
+            <a href="{{ route('public.takeAway') }}"
+               class="text-white text-center px-8 py-2 border border-white bg-gradient-to-b from-cyan-300 to-blue-700 no-underline hover:opacity-90">
+                Bestellen
+            </a>
+
         </nav>
 
     </div>

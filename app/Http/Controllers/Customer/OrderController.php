@@ -13,8 +13,10 @@ class OrderController extends Controller
     public function orderPage(?int $selectedOrderId = null) {
         $dishes = Dish::with('discounts')->get();
 
-        $dishesByType = $dishes->groupBy('type_dish');
         $dishesList = $dishes;
+        $dishesByType = $dishes->groupBy(function ($dish) {
+            return $dish->type->name;
+        });
 
         if ($selectedOrderId) {
             $order = Order::find($selectedOrderId);
